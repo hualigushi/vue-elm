@@ -23,7 +23,6 @@
   import header from '@/components/header/header.vue';
 
   const ERR_OK = 0;
-  const debug = process.env.NODE_ENV !== 'production';
 
   export default {
     name: 'app',
@@ -39,8 +38,8 @@
         };
     },
     created () {
-      const url = debug ? '/api/seller' : 'http://ustbhuangyi.com/sell/api/seller';
-      this.$http.get(url + '?id=' + this.seller.id).then((response) => {
+      const url = '/api/seller';
+      this.$http.get(url).then((response) => {
         response = response.body;
         if (response.errno === ERR_OK) {
           this.seller = Object.assign({}, this.seller, response.data);
